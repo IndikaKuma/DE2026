@@ -14,7 +14,7 @@ def predict_str():
     prediction_inout = request.get_json()
     status = dp.predict_single_record(prediction_inout)
     # return the prediction outcome as a json message. 200 is HTTP status code 200, indicating successful completion
-    return jsonify({'result': status}), 200
+    return jsonify({'result': str(status)}), 200
 
 
 dp = DiabetesPredictor()
