@@ -1,6 +1,5 @@
-# DE2026
+empty now
 
-The source code for the labs in the data engineering course at JADS
 
 
 
