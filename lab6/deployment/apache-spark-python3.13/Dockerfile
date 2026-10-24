@@ -1,7 +1,7 @@
 # ==========================================
 # Stage 1: Grab the specific Python version
 # ==========================================
-FROM python:3.13.17 AS python-source
+FROM python:3.13.17-bookworm AS python-source
 
 # ==========================================
 # Stage 2: Final Spark image
@@ -22,12 +22,9 @@ ENV PYSPARK_DRIVER_PYTHON=/usr/local/bin/python3
 COPY requirements.txt .
 # Install required python packages
 RUN  apt-get update -y && apt-get install -y python3-wheel
+RUN python3 -m pip install "pip @ https://files.pythonhosted.org/packages/3f/06/3e4420302363fbb71be3c7f35ce042f54bfca330e3e66b3a2e3c4cca579f/pip-26.2.2-py3-none-any.whl#sha256=fd7f4dfa8190e014013b9f08f3e973f4e4c26ffd179a204895533a7254813a70"
+
 RUN python3 -m pip install --no-cache-dir -r requirements.txt
 
-# Update the Guava library 
-RUN echo 'spark.jars.packages com.google.guava:failureaccess:1.0.3,com.google.guava:guava:33.7.2-jre >> "${SPARK_HOME}/conf/spark-defaults.conf"
-
-# Verify the replacement during build
-RUN python3 --version && pyspark --version
-
+# switch to spark user
 USER spark
