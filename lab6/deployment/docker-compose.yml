@@ -39,7 +39,8 @@ services:
       - spark-master
       - kafka
   spark-master:
-    image: apache/spark:4.2.0
+    build:
+      context: ./apache-spark-python3.13    # spark matching the python version of Jupyter lab
     container_name: spark-master
     command: /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master
     environment:
@@ -53,7 +54,8 @@ services:
       - spark-data:/home/jovyan/spark_data
       - spark-checkpoint:/home/jovyan/checkpoint
   spark-worker-1:
-    image: apache/spark:4.2.0
+    build:
+      context: ./apache-spark-python3.13    # spark matching the python version of Jupyter lab
     container_name: spark-worker-1
     command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
     depends_on:
@@ -70,7 +72,8 @@ services:
       - spark-data:/home/jovyan/data
       - spark-checkpoint:/home/jovyan/checkpoint
   spark-worker-2:
-    image: apache/spark:4.2.0
+    build:
+      context: ./apache-spark-python3.13    # spark matching the python version of Jupyter lab
     container_name: spark-worker-2
     command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
     depends_on:
