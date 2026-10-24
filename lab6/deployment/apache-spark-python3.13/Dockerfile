@@ -22,7 +22,7 @@ ENV PYSPARK_DRIVER_PYTHON=/usr/local/bin/python3
 COPY requirements.txt .
 # Install required python packages
 RUN  apt-get update -y && apt-get install -y python3-wheel
-RUN python3.13 -m pip install --no-cache-dir -r requirements.txt
+RUN python3 -m pip install --no-cache-dir -r requirements.txt
 
 # Update the Guava library 
 RUN echo 'spark.jars.packages com.google.guava:failureaccess:1.0.3,com.google.guava:guava:33.7.2-jre >> "${SPARK_HOME}/conf/spark-defaults.conf"
