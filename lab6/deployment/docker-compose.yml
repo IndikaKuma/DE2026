@@ -64,7 +64,7 @@ services:
       - SPARK_MODE=worker
       - SPARK_EXECUTOR_MEMORY=2G
       - SPARK_EXECUTOR_CORES=1
-      - SPARK_WORKER_CORES=1
+      - SPARK_WORKER_CORES=2
       - SPARK_WORKER_WEBUI_PORT=8081
     ports:
       - "8081:8081"
