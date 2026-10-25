@@ -51,8 +51,8 @@ services:
       - "8080:8080"
       - "7077:7077"
     volumes:
-      - spark-data:/home/jovyan/data
-      - spark-checkpoint:/home/jovyan/checkpoint
+      - data:/home/jovyan/data
+      - checkpoint:/home/jovyan/checkpoint
   spark-worker-1:
     build:
       context: ./apache-spark-python3.13    # spark matching the python version of Jupyter lab
